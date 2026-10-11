@@ -27,16 +27,6 @@ The protos live under `proto/`, the module root, so schemas import them as
 `protoc/contrib/...`. The Go and Rust paths mirror the package without its
 `protoc.` prefix, which the repository name already carries.
 
-The Go `defaults` package also holds `Defaulter`, the interface every
-generated `SetDefaults()` satisfies, for code that holds a message without its
-concrete type:
-
-```go
-if d, ok := req.(defaults.Defaulter); ok {
-    d.SetDefaults()
-}
-```
-
 ## Using the options in a schema
 
 The protos are published to the Buf Schema Registry as
