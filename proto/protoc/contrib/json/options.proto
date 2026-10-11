@@ -2,7 +2,7 @@ syntax = "proto2";
 
 package protoc.contrib.json;
 
-option go_package = "github.com/protoc-contrib/protoc-types/protoc/contrib/json;json";
+option go_package = "github.com/protoc-contrib/protoc-types/contrib/json;json";
 
 import "google/protobuf/descriptor.proto";
 

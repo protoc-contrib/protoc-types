@@ -11,8 +11,8 @@ import (
 	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/reflect/protoregistry"
 
-	_ "github.com/protoc-contrib/protoc-types/protoc/contrib/defaults"
-	_ "github.com/protoc-contrib/protoc-types/protoc/contrib/json"
+	_ "github.com/protoc-contrib/protoc-types/contrib/defaults"
+	_ "github.com/protoc-contrib/protoc-types/contrib/json"
 )
 
 func TestExtensionNumbersAreUnique(t *testing.T) {

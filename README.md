@@ -20,8 +20,12 @@ every schema uses the same copy.
 
 | Package | Read by | Go | Rust |
 | --- | --- | --- | --- |
-| `protoc.contrib.defaults` | [protoc-gen-go-defaults], [protoc-gen-rust-defaults] | `github.com/protoc-contrib/protoc-types/protoc/contrib/defaults` | `protoc_types::protoc::contrib::defaults` |
-| `protoc.contrib.json` | [protoc-gen-go-json] | `github.com/protoc-contrib/protoc-types/protoc/contrib/json` | `protoc_types::protoc::contrib::json` |
+| `protoc.contrib.defaults` | [protoc-gen-go-defaults], [protoc-gen-rust-defaults] | `github.com/protoc-contrib/protoc-types/contrib/defaults` | `protoc_types::contrib::defaults` |
+| `protoc.contrib.json` | [protoc-gen-go-json] | `github.com/protoc-contrib/protoc-types/contrib/json` | `protoc_types::contrib::json` |
+
+The protos live under `proto/`, the module root, so schemas import them as
+`protoc/contrib/...`. The Go and Rust paths mirror the package without its
+`protoc.` prefix, which the repository name already carries.
 
 The Go `defaults` package also holds `Defaulter`, the interface every
 generated `SetDefaults()` satisfies, for code that holds a message without its
@@ -76,7 +80,7 @@ Generated code for both languages is committed, so neither needs `buf` or
 
 Every package extends the same `google.protobuf.*Options` messages, so its
 numbers must not collide with another's on the same extendee.
-`protoc/contrib/extensions_test.go` fails if they do.
+`contrib/extensions_test.go` fails if they do.
 
 | Range | Package |
 | --- | --- |
@@ -90,7 +94,7 @@ A new package takes the next free block of 100.
 ```bash
 nix develop
 buf lint
-buf generate                                  # Go bindings, beside the protos
+buf generate                                    # Go bindings, in contrib/
 UPDATE_GENERATED=1 cargo test --test generated  # Rust bindings, in src/generated
 go test ./... && cargo test
 ```
