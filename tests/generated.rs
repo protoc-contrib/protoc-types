@@ -1,4 +1,5 @@
-//! `src/generated` is buffa's output for every `protoc/contrib/*/options.proto`,
+//! `src/generated` is buffa's output for every
+//! `proto/protoc/contrib/*/options.proto`,
 //! committed so depending on this crate needs no `protoc`. This regenerates it
 //! and fails if the committed copy has drifted -- from the proto, or from the
 //! buffa it targets.
@@ -17,8 +18,8 @@ const PROTOS: &[&str] = &[
 #[test]
 fn committed_code_matches_a_fresh_generation() {
     let manifest = Path::new(env!("CARGO_MANIFEST_DIR"));
-    // The crate is the repository root, which is also the protos' include root.
-    let proto_root = manifest;
+    // The crate is the repository root; the protos' include root is `proto/`.
+    let proto_root = &manifest.join("proto");
     let committed = manifest.join("src/generated");
     let fresh = Path::new(env!("CARGO_TARGET_TMPDIR")).join("protoc-types");
     let _ = std::fs::remove_dir_all(&fresh);

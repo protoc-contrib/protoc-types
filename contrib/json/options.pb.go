@@ -63,7 +63,7 @@ const file_protoc_contrib_json_options_proto_rawDesc = "" +
 	"\n" +
 	"!protoc/contrib/json/options.proto\x12\x13protoc.contrib.json\x1a google/protobuf/descriptor.proto:5\n" +
 	"\x04skip\x12\x1f.google.protobuf.MessageOptions\x18\xbc\xae\x03 \x01(\bR\x04skip:;\n" +
-	"\tenum_skip\x12\x1c.google.protobuf.EnumOptions\x18\xbc\xae\x03 \x01(\bR\benumSkipBAZ?github.com/protoc-contrib/protoc-types/protoc/contrib/json;json"
+	"\tenum_skip\x12\x1c.google.protobuf.EnumOptions\x18\xbc\xae\x03 \x01(\bR\benumSkipB:Z8github.com/protoc-contrib/protoc-types/contrib/json;json"
 
 var file_protoc_contrib_json_options_proto_goTypes = []any{
 	(*descriptorpb.MessageOptions)(nil), // 0: google.protobuf.MessageOptions

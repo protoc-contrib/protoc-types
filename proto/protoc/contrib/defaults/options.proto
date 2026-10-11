@@ -17,7 +17,7 @@ package protoc.contrib.defaults;
 
 import "google/protobuf/descriptor.proto";
 
-option go_package = "github.com/protoc-contrib/protoc-types/protoc/contrib/defaults;defaults";
+option go_package = "github.com/protoc-contrib/protoc-types/contrib/defaults;defaults";
 
 // Default values applied at the message level
 extend google.protobuf.MessageOptions {

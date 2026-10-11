@@ -1,10 +1,10 @@
 //! The `protoc.contrib.*` proto packages compiled for buffa: the options the
 //! protoc-contrib plugins read, one module per package, at the path the
-//! package names.
+//! package names less its `protoc.` prefix, as in the Go module.
 //!
-//! - [`protoc::contrib::defaults`]: `protoc.contrib.defaults`, read by
+//! - [`contrib::defaults`]: `protoc.contrib.defaults`, read by
 //!   [protoc-gen-rust-defaults](https://github.com/protoc-contrib/protoc-gen-rust-defaults).
-//! - [`protoc::contrib::json`]: `protoc.contrib.json`, read by
+//! - [`contrib::json`]: `protoc.contrib.json`, read by
 //!   [protoc-gen-go-json](https://github.com/protoc-contrib/protoc-gen-go-json).
 //!
 //! Generated once and committed, so depending on this crate needs no `protoc`.
@@ -19,11 +19,11 @@ mod generated {
     include!("generated/_include.rs");
 }
 
-pub use generated::protoc;
+pub use generated::protoc::contrib;
 
 #[cfg(test)]
 mod tests {
-    use super::protoc::contrib::{defaults, json};
+    use super::contrib::{defaults, json};
     use buffa::Message;
 
     #[test]

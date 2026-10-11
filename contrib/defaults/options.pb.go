@@ -574,7 +574,7 @@ const file_protoc_contrib_defaults_options_proto_rawDesc = "" +
 	"unexported\x12\x1f.google.protobuf.MessageOptions\x18ܭ\x03 \x01(\bR\n" +
 	"unexported:5\n" +
 	"\x05oneof\x12\x1d.google.protobuf.OneofOptions\x18ڭ\x03 \x01(\tR\x05oneof:]\n" +
-	"\x05value\x12\x1d.google.protobuf.FieldOptions\x18٭\x03 \x01(\v2&.protoc.contrib.defaults.FieldDefaultsR\x05valueBIZGgithub.com/protoc-contrib/protoc-types/protoc/contrib/defaults;defaults"
+	"\x05value\x12\x1d.google.protobuf.FieldOptions\x18٭\x03 \x01(\v2&.protoc.contrib.defaults.FieldDefaultsR\x05valueBBZ@github.com/protoc-contrib/protoc-types/contrib/defaults;defaults"
 
 var (
 	file_protoc_contrib_defaults_options_proto_rawDescOnce sync.Once

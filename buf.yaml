@@ -1,7 +1,7 @@
 version: v2
 
 modules:
-  - path: .
+  - path: proto
     name: buf.build/protoc-contrib/protoc-types
     lint:
       use:
