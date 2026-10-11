@@ -42,3 +42,27 @@ jobs:
       # Includes tests/generated.rs, which fails if src/generated is stale.
       - name: Test Rust
         run: nix develop --command cargo test
+
+  # Publishes the protos as buf.build/protoc-contrib/protoc-types on every
+  # merge to main, labelled main and linked to the commit. --create makes the
+  # first push create the module, public like the plugins that read it.
+  publish:
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v22
+
+      - name: Push to Buf Schema Registry
+        run: |
+          nix develop --command \
+            buf push --git-metadata --create --create-visibility public
+        env:
+          BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
