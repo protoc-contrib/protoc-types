@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v22
+
+      - name: Lint protos
+        run: nix develop --command buf lint
+
+      - name: Check Go bindings are current
+        run: |
+          nix develop --command buf generate
+          git diff --exit-code
+
+      - name: Test Go
+        run: nix develop --command go test ./...
+
+      - name: Lint Rust
+        run: |
+          nix develop --command cargo fmt --check
+          nix develop --command cargo clippy --all-targets
+
+      # Includes tests/generated.rs, which fails if src/generated is stale.
+      - name: Test Rust
+        run: nix develop --command cargo test

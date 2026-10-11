@@ -1,0 +1,11 @@
+version: v2
+
+modules:
+  - path: .
+    name: buf.build/protoc-contrib/protoc-types
+    lint:
+      use:
+        - BASIC
+    breaking:
+      use:
+        - FILE
