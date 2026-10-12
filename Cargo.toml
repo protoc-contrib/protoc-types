@@ -7,6 +7,9 @@ description = "The protoc.contrib proto packages compiled for buffa: the options
 repository = "https://github.com/protoc-contrib/protoc-types"
 # Taken from GitHub, not crates.io, pinned to a rev.
 publish = false
+# Lets the build scripts of dependent crates find the protos, as
+# DEP_PROTOC_TYPES_PROTO; see build.rs.
+links = "protoc-types"
 
 [lints.clippy]
 all = { level = "deny", priority = -1 }
