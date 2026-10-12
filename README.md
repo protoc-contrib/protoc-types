@@ -66,6 +66,17 @@ protoc-types = { git = "https://github.com/protoc-contrib/protoc-types", rev = "
 Generated code for both languages is committed, so neither needs `buf` or
 `protoc` to build.
 
+A Rust crate whose build script compiles a schema importing these protos can
+take their include root from this crate, rather than vendoring a copy: list
+`protoc-types` under `[dependencies]`, and Cargo hands the build script
+`DEP_PROTOC_TYPES_PROTO`, the path of `proto/` at the pinned rev.
+
+```rust
+// build.rs
+let protos = std::env::var("DEP_PROTOC_TYPES_PROTO")?;
+// ... protoc -I{protos} ..., or buffa_build::Config::includes(&[&protos, ...])
+```
+
 ## Extension numbers
 
 Every package extends the same `google.protobuf.*Options` messages, so its
